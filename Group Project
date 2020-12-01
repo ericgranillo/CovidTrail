@@ -1,0 +1,491 @@
+import java.util.Scanner;
+import java.util.Random;
+
+
+public class TheCovidTrail {
+
+    // Here is the method that I created that is suppose to filter through the garbage typed into the scanner
+
+    public static int decisionFilter(Scanner s) {
+
+
+        Scanner reader = new Scanner(System.in);
+
+        String userInput = "";
+
+
+        boolean flag = false;
+
+        while (flag == false) {
+
+            userInput = s.nextLine(); // read in the input again every time the loop runs to make the user type again
+
+            if (userInput.length() != 1) {
+                System.out.println("Too many characters, please keep it at a max of 1");
+            } else if (userInput.charAt(0) != '1' && userInput.charAt(0) != '2') {
+                System.out.println("Incorrect entry, please enter 1 or 2!");
+            } else {
+                flag = true;
+                break;
+            }
+
+
+        }
+
+        //This converts the character into a number that we can compare later with a boolean
+        return Character.getNumericValue(userInput.charAt(0));
+
+        //End of the decisionFilter Method
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner userDecision = new Scanner(System.in);  // Create a Scanner object
+        // This is the starting point of our main method, which ever code starts here must call the userFate
+        // Not only that but must define the userFate as an int, but don't forget we also need to use our method
+        // decisionFilter to filter our garbage text that isn't 1 or 2
+        // userFate = decisionFilter(userDecision); should be put after we give them the choice of 1 or 2
+        
+        // Do not forget to update the userRisk to 100, we will need to work out the math later, because if our
+        // userRisk becomes negative it crashes the game
+        int userRisk = 100;
+        
+
+        // This is the beginning of the grocery store scenario
+
+        System.out.println("Welcome to your local grocery store! A building filled");
+        System.out.println("with all the items you need to survive.");
+        System.out.println("However, if you do not shop smart, there is a risk of becoming infected with Covid-19.");
+        System.out.println("So please shop smart!");
+        System.out.println();
+
+        System.out.println("Whoa slow down there cowboy, we need a shopping cart first.");
+        System.out.println("Theres plenty o' fine metal steeds that can help us navigate us throughout the store.");
+        System.out.println("However it looks like sanitizing wipes have been stolen");
+        System.out.println("and there's no hand sanitizer in sight ");
+        System.out.println("The choice is yours, how would you like to proceed?");
+
+        System.out.println();
+        System.out.println("Press 1: I ain't afraid of no shopping cart germs, the real enemy is 5G towers");
+        System.out.println("Press 2: Looks like I'm carrying my items by hand, no metal steed for me");
+
+    // At the beginning of each scenario we must call upon userFate which is a variable storing the scanner input
+        // which that input is filtered through our decisionFilter method
+
+        int userFate = decisionFilter(userDecision);
+
+        if (userFate == 1) {
+            System.out.println();
+            System.out.println("Sure, 5G towers and reptile people, I understand...");
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("Unfortunately,");
+                System.out.println("Turns out 5G towers weren't the enemy, instead it was you");
+                System.out.println("and your lack of vigilance which ultimately caused you to become...");
+                System.out.println("INFECTED");
+                return;
+            }
+
+            if (infected == false) {
+                System.out.println("and it looks like you avoided infection...for now.");
+                System.out.println();
+
+            }
+
+        } else if (userFate == 2) {
+            System.out.println();
+            System.out.println("It sucks to have to carry all that you need, but you are playing it safe");
+            System.out.println("Which is commendable.");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("While your actions deserved praise on Facebook, it ultimately didn't save you");
+                System.out.println("because you contracted Covid-19.");
+                System.out.println();
+                return;
+
+            }
+
+            if (infected == false) {
+                System.out.println("Because of your decision you greatly decreased your chances of getting Covid-19,");
+                System.out.println("Make sure you post online about what you did today, because it took guts");
+                System.out.println();
+            }
+
+        }
+    // This is the second part of the grocery store scenario
+
+        System.out.println("First on our list is toilet paper (which for a period of time was a rare resource).");
+        System.out.println("Yikes! Looks like that aisle is full of people, what should we do?");
+        System.out.println();
+        System.out.println("Press 1: Skip that aisle for now");
+        System.out.println("press 2: Don't care, I need my rolls (Proceed into that aisle)");
+
+        //Once again we call upon userFate this time not declaring it as an Int
+        userFate = decisionFilter(userDecision);
+
+
+        if (userFate == 1) {
+            System.out.println();
+            System.out.println("Probably a good choice, it might clear up later ");
+
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("...Unfortunately,");
+                System.out.println("you contracted Covid-19. Sometimes even when practicing the proper measures");
+                System.out.println("we still have a risk of being infected.");
+                System.out.println();
+                return;
+            }
+
+            if (infected == false) {
+                System.out.println("And because of your decision,");
+                System.out.println("you avoided infection...for now");
+                System.out.println();
+            }
+
+        } else if (userFate == 2) {
+            System.out.println();
+            System.out.println("Clearly you have no regard of keeping a 6 foot distance from others.");
+            System.out.println("when you don't keep your distance from others");
+            System.out.println("you greatly increase your risk of infection...");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("Which is exactly what happened. You should have skipped that aisle.");
+                System.out.println("Because you have contracted Covid-19.");
+                System.out.println();
+                return;
+            }
+
+            if (infected == false) {
+                System.out.println("...However, you got lucky and avoided infection this time.");
+                System.out.println();
+            }
+
+        }
+
+        // This is part 3 of the grocery store scenario
+
+        System.out.println("Your next destination is the dairy aisle, gotta get some milk and eggs. ");
+        System.out.println("Some truly essential... crap that guy isn't wearing a mask and looks to be coughing ");
+        System.out.println("on some of the food you need.");
+        System.out.println("What do you want to do?");
+        System.out.println();
+        System.out.println("press 1: Once again we'll skip the aisle and perhaps come back later.");
+        System.out.println("press 2: Doesn't bother me, I can always clean off whatever germs that guy has.");
+
+        userFate = decisionFilter(userDecision);
+
+        if (userFate == 1) {
+            System.out.println("Good choice");
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("...Unfortunately,");
+                System.out.println("you contracted Covid-19. Sometimes even when practicing the proper measures ");
+                System.out.println("we still have a risk of being infected.");
+                return;
+            }
+
+            if (infected == false) {
+                System.out.println("Because of your decision");
+                System.out.println("you avoided infection...for now.");
+                System.out.println();
+
+            }
+
+        } else if (userFate == 2) {
+            System.out.println("Are you sure you wanna do that? Very well then.");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("Should have just moved on to the next aisle.");
+                System.out.println("But because of your decision you contracted Covid-19.");
+                System.out.println();
+                return;
+
+            }
+
+            if (infected == false) {
+                System.out.println("Because of your decision you greatly increased your chances of getting Covid-19,");
+                System.out.println("but it seems as if there was some kind of divine intervention.");
+                System.out.println("Therefore you live another day.");
+                System.out.println();
+            }
+
+
+        }
+
+        // This is the final part of the grocery store scenario
+
+        System.out.println("So far this grocery trip hasn't been very successful,");
+        System.out.println("lot's people seem to be ignoring the mask mandate");
+        System.out.println("and nobody is keeping their distance.");
+        System.out.println("press 1: To go home");
+        System.out.println("press 2: Don't care I need my groceries today.");
+
+        userFate = decisionFilter(userDecision);
+
+        if (userFate == 1) {
+            System.out.println("This was a tough call to make.");
+            System.out.println("However, I think this grocery store has an app");
+            System.out.println("that allows you to order online and do curbside pickup");
+            System.out.println("Hope is not lost!");
+            System.out.println();
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("...Unfortunately, hope was lost this time because");
+                System.out.println("you contracted Covid-19. Sometimes even when practicing the proper measures");
+                System.out.println("we still have a risk of being infected.");
+                System.out.println();
+                return;
+            }
+
+            if (infected == false) {
+                System.out.println("Because of your decision");
+                System.out.println("you avoided infection...for now.");
+                System.out.println();
+            }
+
+        } else if (userFate == 2) {
+            System.out.println("This is was a tough call to make, but I understand");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+            boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            if (infected == true) {
+                System.out.println("Who would have thought,");
+                System.out.println("going to the store to get things you need to survive would end up bringing you...");
+                System.out.println("closer to DEATH.");
+                System.out.println("It's because of your decision you contracted Covid-19.");
+                System.out.println();
+                return;
+
+            }
+
+            if (infected == false) {
+                System.out.println("Because of your decision you greatly increased your chances of getting Covid-19");
+                System.out.println("but it seems as if there was once again some kind of divine intervention");
+                System.out.println("Therefore you live another day and successfully went grocery shopping.");
+                System.out.println("Now it's time head home.");
+                System.out.println();
+            }
+
+            // This is the end of the grocery store scenario and the beginning of the next scenario
+            // We should update the user of their health at this point since they have made it to the next level
+
+
+
+            System.out.println("Current health is at " + userRisk + "/100");
+        }
+
+        //Insert scenario here but be sure they can transition smoothly, for example, we would want to have a
+        // println that progresses the games story. We don't want to just jump from scenario to the next
+
+        System.out.println("You're feeling depressed . . . and kinda heavy.");
+        System.out.println("You go to the gym to build self esteem.");
+        System.out.println("What do you want to workout?");
+        System.out.println("press 1 To train LEGS on the squat rack!!!");
+        System.out.println("press 2 To train CHEST on the bench press!!!");
+
+        userFate = decisionFilter(userDecision);
+
+
+// This will happen if the user selects 1 for situation 1
+        if (userFate == 1) {
+            System.out.println("Good choice! Never skip leg day.");
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+    // This happens if the user becomes infected from option 1 in situation 1.
+            boolean infected = chanceOfInfection.nextInt(userRisk) <= 0;
+            if (infected == true) {
+                System.out.println("The plates are weirdly sweaty. . .");
+                System.out.println("A drop of sweat goes into your mouth . . .");
+                System.out.println("you contracted the virus, see you in the next life.");
+            }
+
+    // If the user is not infected in option 1 situation 1 this will happen.
+            if (infected == false) {
+                System.out.println("COVID-19 doesn't train legs and is intimidated by your lifts");
+                System.out.println("COVID-19 leaves you alone. . . for now.");
+            }
+
+    // This will happen if the user selects 2 for situation 1
+        } else if (userFate == 2) {
+            System.out.println("People always use the bench press. . .");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+
+    // This happens if the user becomes infected from option 2 in situation 1.
+            boolean infected = chanceOfInfection.nextInt(userRisk) <= 0;
+            if (infected == true) {
+                System.out.println("The last person didn't wipe the bench properly");
+                System.out.println("The COVID-19 crawled from your sweaty back and inside you");
+                System.out.println("you contracted the virus, see you in the next life.");
+                return;
+            }
+    // If the user is not infected in option 2 situation 1 this will happen
+            if (infected == false) {
+                System.out.println("The flex of your chest muscles scared COVID-19 away.");
+                System.out.println("for now. . . ");
+            }
+
+        }
+    //This is situation 2 Gym bully
+    //in this case its simply 1 or 2
+        System.out.println();
+        System.out.println("After a nice sweaty set you see someone approaching you.");
+        System.out.println("OH NO ITS THE GYM BULLY!!!");
+        System.out.println("He's trying try to take over your workout!");
+        System.out.println("What do you do?");
+        System.out.println("press 1: Allow him to takeover?");
+        System.out.println("press 2: No way! They can wait.");
+
+        userFate = decisionFilter(userDecision);
+
+    // This will happen if the user selects 1 for situation 2
+        if (userFate == 1) {
+            System.out.println("He gave you a sweaty fist bump");
+            System.out.println("and get kicked off your workout. . . wimp");
+
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 10;
+
+    // This happens if the user becomes infected from option 1 in situation 2.
+            boolean infected = chanceOfInfection.nextInt(userRisk) <= 0;
+            if (infected == true) {
+                System.out.println("that fist bump was packed with COVID-19.");
+                System.out.println("you contracted the virus, see you in the next life.");
+                return;
+    // If the user is not infected in option 1 situation 2 this will happen.
+            }
+
+    // If the user is not infected in option 1 situation 2 this will happen.
+            if (infected == false) {
+                System.out.println("The presence of the gym bully scared away COVID-19.");
+            }
+
+    // This will happen if the user selects 2 for situation 2
+        } else if (userFate == 2) {
+            System.out.println("Wow! Nobody stood up to the gym bully before.");
+            System.out.println("You get mad respect from everyone at the gym.");
+            Random chanceOfInfection = new Random();
+            userRisk = userRisk - 2;
+
+    // This happens if the user becomes infected from option 2 in situation 2.
+            boolean infected = chanceOfInfection.nextInt(userRisk) <= 0;
+            if (infected == true) {
+                System.out.println("You stood up to the bully, but not COVID-19.");
+                System.out.println("you contracted the virus, see you in the next life.");
+                return;
+            }
+
+    // If the user is not infected in option 2 situation 2 this will happen.
+            if (infected == false) {
+                System.out.println("You defended yourself from the gym bully and COVID-19!");
+            }
+
+        }
+    //This is situation 3 Can I get a spot
+    //in this case its simply 1 or 2 then 1 or 2
+        System.out.println();
+        System.out.println("After a good pump at the gym you decide to begin your cool down");
+        System.out.println("however you are approached by a stranger asking for a spot. ");
+        System.out.println("press 1: Help the stranger out?");
+        System.out.println("press 2: Politely decline.");
+
+        userFate = decisionFilter(userDecision);
+    // This will happen if the user selects 1 for situation 3
+    // The user will select another option 1 or 2.
+        if (userFate == 1) {
+            System.out.println("press 1: Are you sure you want to spot this person?");
+            System.out.println("press 2: Probably not a good idea. There is a pandemic.");
+            userFate = userDecision.nextInt();
+
+    // This will happen if the user selects 1 again for situation 3
+    // This is asking for the second option after user selects 1
+            if (userFate == 1) {
+                System.out.println("You take the risk!!! (someone hasn't learned their lesson)");
+                System.out.println("The stranger gives you a sweaty pat on the back!");
+                Random chanceOfInfection = new Random();
+                userRisk = userRisk - 15;
+                boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+            }
+// This will happen if the user selects 2 again for situation 3
+// This is asking for the second option after user selects 1
+            if (userFate == 1) {
+                System.out.println("Good choice! They can ask someone else to spot.");
+                Random chanceOfInfection = new Random();
+                userRisk = userRisk - 0;
+                boolean infected = chanceOfInfection.nextInt(userRisk) == 0;
+
+// If the user is infected it will return this message.
+                if (infected == true) {
+                    System.out.println("Well... you're infected... but at least you're a nice person.");
+                    System.out.println("you contracted the virus, see you in the next life.");
+                    return;
+                }
+// After user inputs it will return this message if not infected
+                if (infected == false) {
+                    System.out.println("If the world was in a pandemic you'd be safe.");
+                }
+// This message will happen if user chooses option 2 after already
+// choosing option 1
+            } else if (userFate == 2) {
+                System.out.println("Good choice! They can ask someone else to spot.");
+                Random chanceOfInfection = new Random();
+                userRisk = userRisk - 2;
+
+// < 50 life points is infected
+                boolean infected = chanceOfInfection.nextInt(userRisk) <= 50;
+                if (infected == true) {
+                    System.out.println("See where being nice got you!!!");
+                    System.out.println("you contracted the virus, see you in the next life.");
+                    return;
+                }
+
+                if (infected == false) {
+                    System.out.println("You go lucky. . . this time. . .");
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("Congratulations!!! You survived the gym!");
+        System.out.println("Time to go somewhere else stinky.");
+        System.out.println("Here are your life points.");
+        System.out.println("Current health is at " + userRisk + "/100");
+
+
+    }
+
+    // Insert next scenario here!
+}
